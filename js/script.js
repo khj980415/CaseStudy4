@@ -6,6 +6,13 @@ $(document).ready(() => {
 		winw=$(window).width();
 
 		if(winw > 750){
+			if($("header .tab").hasClass("active")){
+			$("header .tab").removeClass("active");
+			$("header #mobile").fadeOut(200);
+			$("header .logo").removeClass("active");
+			$("body").removeClass("fixed");
+			}
+
 			if(!mainSwiper){
 				mainSwiper=new Swiper(".mainSwiper", {
 					slidesPerView: 3,
@@ -24,6 +31,7 @@ $(document).ready(() => {
 		}
 		else{
 			if(mainSwiper){
+				console.log("mobile");
 				mainSwiper.destroy(false, false);
 				mainSwiper=null;
 				$(".swiper-slide").removeAttr("style");
@@ -77,25 +85,32 @@ $(document).ready(() => {
 			$(this).addClass("active");
 			$("header .logo").addClass("active");
 			$("header #mobile").fadeIn(200);
+			$("body").addClass("fixed");
 		}
 		else{
 			$(this).removeClass("active");
 			$("header #mobile").fadeOut(200);
 			$("header .logo").removeClass("active");
+			$("body").removeClass("fixed");
 		}
 	});
 	$("header > .inner > .right > #mobile > ul > li").click(function(e){
 		e.preventDefault();
-		if(!$(this).hasClass("active")){
+		if($(this).find("div").length === 1){
+			if(!$(this).hasClass("active")){
+				$("header > .inner > .right > #mobile > ul > li").removeClass("active");
+				$(this).addClass("active");
+				$("header .right #mobile li ul").slideUp(300);
+				$(this).find("ul").slideDown(300);
+			}
+			else{
+				$(this).removeClass("active");
+				$(this).find("ul").slideUp(300);
+			}
+		}
+		else {
 			$("header > .inner > .right > #mobile > ul > li").removeClass("active");
-			$(this).addClass("active");
 			$("header .right #mobile li ul").slideUp(300);
-			$(this).find("ul").slideDown(300);
 		}
-		else{
-			$(this).removeClass("active");
-			$(this).find("ul").slideUp(300);
-		}
-
 	});
 });

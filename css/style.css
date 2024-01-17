@@ -21,6 +21,10 @@ img {
 
 /* style */
 
+body.fixed {
+	overflow-y: hidden;
+}
+
 header {
 	position: fixed;
 	width: 100%;
@@ -125,7 +129,7 @@ header .right #mobile {
 
 header > .inner > .right > #mobile > ul {
 	margin-top: 15vh;
-	height: 80vh;
+	height: 60%;
 	overflow-y: auto;
 }
 
@@ -155,6 +159,10 @@ header > .inner > .right > #mobile > ul > li > a {
 	padding-left: 30px;
 	box-sizing: border-box;
 	font-size: 1.125em;
+}
+
+header > .inner > .right > #mobile > ul > li > a.link {
+	color: #8e0f24;
 }
 
 header > .inner > .right > #mobile > ul > li.active > a {
